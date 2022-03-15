@@ -1,0 +1,47 @@
+.card{
+    height: auto;
+    min-height: 30rem;
+}
+.card-custom {
+   border-radius: 15px;
+   background-color:  rgba(255, 255, 255, 0.952);
+}
+.card-custom-header{
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+  }
+  
+  thead th {
+    background-color: #ffffff00;
+    color: rgb(0, 0, 0);
+    border: solid 0px;
+    border-spacing: 0px;    
+    border-collapse:collapse;
+  }
+  
+  tbody td {
+    background-color: #ffffffc7;
+  }
+    
+  tr td:first-child,
+  tr  {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+  }
+  
+  tr td:last-child,
+  tr  {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+  .bodytable{
+    background-color: #a7bec725;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }

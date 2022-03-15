@@ -1,0 +1,8 @@
+<div *ngIf="data.data_length === 0">
+
+    <h1 style="margin-top: 10%;">ไม่พบข้อมูลในช่วงเวลาที่เรียกดู</h1>
+</div>
+
+<div *ngIf="data.data_length != 0">
+    <div echarts [options]="data.options" [merge]="data.options" class="chart" style="height: 35rem;"></div>
+</div>

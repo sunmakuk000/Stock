@@ -1,0 +1,6 @@
+{
+    "/api": {
+      "target": "http://elcmall.com:6200",
+      "secure": false
+    }
+  }

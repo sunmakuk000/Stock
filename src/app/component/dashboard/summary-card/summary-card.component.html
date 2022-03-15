@@ -1,0 +1,37 @@
+<div class="row" style="margin-top: 2rem;">
+    <div class="col-sm-12 col-md-6 col-lg-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">ยอดขายสินค้าเดือนนี้</h5>
+                <h3>{{data.card.month_income | number}} บาท</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">กำไรสะสมเดือนนี้</h5>
+                <h3>{{data.card.month_profit | number}} บาท</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">ยอดขายสินค้าทั้งหมด</h5>
+                <h3>{{data.card.total_income| number}} บาท</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">กำไรสะสมทั้งหมด</h5>
+                <h3>{{data.card.total_profit| number}} บาท</h3>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,233 @@
+<div class="row">
+    <div class="col-12">
+        <div class="form-group">
+            <div>
+                <div class="card-header bodyBill">
+                    <div class="row" style="padding-right: 15px;">
+                        <div class="col-lg-9 col-md-12 col-sm-12 col-12">
+                            <h1>คลังสินค้า</h1>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-5 col-7">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body card-custom-body bodyBill">
+                    <div class="form-group">
+                        <div class="form-group mt-3">
+                            <div class="card card-custom">
+                                <!-- <div class="card-header card-custom-header">Section 2 : Product Items</div> -->
+                                <!--Invoice/Receipt No.-->
+                                <div
+                                    class="card-body card-custom-body _No_border_radius_top_LR _No_border_radius_bottom_LR">
+                                    <div class="form-group row _MB0px">
+                                        <div class="col-md-6 col-sm-12 col-12">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 col-sm-12 col-12 col-form-label _col-border-bt">
+                                                    สินค้า&nbsp;<span class="text-red"></span>
+                                                </label>
+                                                <div class="col-md-8 col-sm-12 col-12">
+                                                    <div class="form-group _MB0px"
+                                                        [ngClass]="diaplayCss(productItem.ProductName,'string',validate.ProductName)">
+                                                        <div class="input-group">
+                                                            <input maxlength="50" name="txtProduct" class="form-control"
+                                                                [typeahead]="ArrProduct" typeaheadOptionField="name"
+                                                                [typeaheadOptionsLimit]="7" [typeaheadMinLength]="0"
+                                                                (typeaheadOnBlur)="typeaheadOnBlur($event,ArrProduct,'name')"
+                                                                (typeaheadOnSelect)="ProductChange($event)"
+                                                                id="txtProduct" autocomplete="off"
+                                                                [(ngModel)]="productItem.ProductName" />
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><em
+                                                                        class="fas fa-search"></em></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-4 col-sm-12 col-12 col-form-label _col-border-bt">
+                                                    ประเภท&nbsp;<span class="text-red"></span>
+                                                </label>
+                                                <div class="col-md-8 col-sm-12 col-12">
+                                                    <div class="form-group _MB0px">
+                                                        <input disabled type="text" class="form-control"
+                                                            [(ngModel)]="productItem.Type" />
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-4 col-sm-12 col-12 col-form-label _col-border-bt">
+                                                    ราคา
+                                                </label>
+                                                <div class="col-md-6 col-sm-12 col-12">
+                                                    <div class="form-group _MB0px">
+                                                        <div class="input-group">
+                                                            <input disabled type="text" class="form-control text-right"
+                                                                [ngModel]="productItem.Price | number" />
+                                                            <select disabled class="form-control col-5">
+                                                                <option selected>บาท</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-4 col-sm-12 col-12 col-form-label _col-border-bt">
+                                                    ในคลัง
+                                                </label>
+                                                <div class="col-md-6 col-sm-12 col-12">
+                                                    <div class="form-group _MB0px">
+                                                        <div class="input-group">
+                                                            <input disabled type="text"
+                                                                class="form-control text-right col-6"
+                                                                [ngModel]="productItem.InStock | number" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12 col-12">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 col-sm-12 col-12 col-form-label _col-border-bt">
+                                                    ยี่ห้อ&nbsp;<span class="text-red"></span>
+                                                </label>
+                                                <div class="col-md-8 col-sm-7 col-12">
+                                                    <div class="form-group _MB0px">
+                                                        <div class="input-group">
+                                                            <input disabled type="text" class="form-control"
+                                                                [(ngModel)]="productItem.Brand" />
+                                                            <div class="input-group-append">
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-4 col-sm-12 col-12 col-form-label _col-border-bt">
+                                                    บรรจุภัณฑ์&nbsp;<span class="text-red"></span>
+                                                </label>
+                                                <div class="col-md-8 col-sm-7 col-12">
+                                                    <div class="form-group _MB0px">
+                                                        <div class="input-group">
+                                                            <input disabled type="text" class="form-control"
+                                                                [(ngModel)]="productItem.Package" />
+                                                            <div class="input-group-append">
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-4 col-sm-12 col-12 col-form-label _col-border-bt">
+                                                    คำอธิบาย&nbsp;<span class="text-red"></span>
+                                                </label>
+                                                <div class="col-md-8 col-sm-12 col-12">
+                                                    <div class="form-group _MB0px">
+                                                        <input disabled type="text" class="form-control"
+                                                            [(ngModel)]="productItem.Description" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-lg-12 col-12">
+                                            <div class="row text-center">
+                                                <div class="col-md-12 col-sm-12 col-12">
+                                                    <div class="form-group _MB0px">
+                                                        <button class="btn btn-primary" (click)="AddItem()"><em
+                                                            class="fas fa-plus"></em>&nbsp;เพิ่ม</button>
+                                                        &nbsp;
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                    </div>
+                                    <div class="form-group row mt-2 _PDLR10">
+                                        <div class="table-responsive bodytable"
+                                            style="overflow-y:200px; height: 30rem;">
+                                            <div class="col-md-12 col-sm-12 col-12 ">
+                                                <!--Displaying Table-->
+                                                <table id="tb" class="table _MB0px">
+                                                    <thead class="tableColor">
+                                                        <tr>
+                                                            <th class="text-center align-middle"
+                                                                *ngFor="let _Item of Columns"
+                                                                [style.width]="_Item.Width">
+                                                                <span [innerHTML]="_Item.ColumnName"></span>&nbsp;
+                                                                <em *ngIf="_Item.SortField != ''"></em>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody style="font-size:13px;">
+                                                        <ng-container
+                                                            *ngFor="let item of (ArrItem | isDel); index as num">
+                                                            <tr *ngIf="ArrItem.length > 0">
+                                                                <td class="text-center align-middle">
+                                                                    <label class="col-form-label">{{num+1}}</label>
+                                                                </td>
+                                                                <td class="text-left align-middle">
+                                                                    <label
+                                                                        class="col-form-label">{{item.ProductName}}</label>
+                                                                </td>
+                                                                <td class="text-right align-middle">
+                                                                    <div class="form-group _MB0px"
+                                                                        [ngClass]="diaplayCss(item.Volume,'number',validate.Volume)">
+                                                                        <input class="form-control text-right"
+                                                                            [(ngModel)]="item.Volume" maxlength="10"
+                                                                            (keypress)="CheckPatternNodot($event)"
+                                                                            (blur)="onVolumeBlur(item,$event,'Volume')" />
+                                                                    </div>
+                                                                </td>
+
+                                                                <td class="text-right align-middle">
+                                                                    <label
+                                                                        class="col-form-label">{{item.InStock  | number : '.0-0'}}</label>
+                                                                </td>
+                                                                <td class="text-center align-middle">
+                                                                    <label class="col-form-label">{{item.TotalStock}}
+                                                                    </label>
+                                                                </td>
+                                                                <td class="text-center align-middle">
+                                                                    <button type="button" class="btn btn-sm btn-primary"
+                                                                        (click)="DelItem(item.ProductId)">
+                                                                        <em class="fas fa-trash"></em></button>
+                                                                </td>
+                                                            </tr>
+                                                        </ng-container>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="text-right mt-3 mr-4">
+                                <button class="btn btn-success" (click)="SaveAddStock()">บันทึก</button>
+                                <!-- <button *ngIf="!isEditBill" class="btn btn-success"
+                                    (click)="Save('save',2)">Daft</button>&nbsp;
+                                <button *ngIf="isEditBill" class="btn btn-success"
+                                    (click)="Save('edit',2)">Daft</button>&nbsp;
+                                <button *ngIf="!isEditBill" class="btn btn-success"
+                                    (click)="Save('save',1)">Approved</button>
+                                <button *ngIf="isEditBill" class="btn btn-success" (click)="Approve()">Approved</button> -->
+                            </div>
+                        </div>
+                        <div class="card-body card-custom-body _No_border_radius_top_LR">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

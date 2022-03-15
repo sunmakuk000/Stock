@@ -1,0 +1,38 @@
+<div class="body" >
+    <div class="container">
+        <div id="CONTENT">
+          <div class="body col-12 col-sm-12 col-md-12 col-lg-6 offset-lg-3">
+        <div class="row">
+          <div class="col-12 box mt-lg-2 mt-md-2 mt-sm-3 mt-3">
+            <div class="main-title">
+           <label>02 Corp.</label>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="container-textfild">
+                  <span class="icon"><i class="fa fa-user"></i></span>
+                  <input class="form-control" (keydown.enter)="auth.login(username,Password)" placeholder="Username" maxlength="20" [(ngModel)]="username" ng-keyup="onAlert()" />
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="container-textfild">
+                  <span class="icon"><i class="fa fa-key"></i></span>
+                  <input type="password" class="form-control" (keydown.enter)="auth.login(username,Password)"  placeholder="Password" maxlength="100" [(ngModel)]="Password" />
+                </div>
+              </div>
+            </div>
+            <div class="input-group">
+              <div class="container-textfild" style="padding-left: 20%;">
+                <button (click)="auth.login(username,Password)" type="submit" style="width: 75%;" class="btn btn-block btn-warning">Sign in&nbsp;<em class="fa fa-arrow-right"></em></button>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

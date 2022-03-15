@@ -1,0 +1,103 @@
+<div class="row">
+    <div class="col-12">
+        <div class="form-group">
+            <div class="card card-custom">
+                <div class="card-header card-custom-header">
+                    <div class="row" style="padding-right: 15px;">
+                        <div class="col-lg-10 col-md-6 col-sm-7 col-5">
+                            <h2> จัดการประเภทสินค้า</h2>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-5 col-7">
+                            <button class="btn btn-success" style="float: right;" (click)="addModel(AddType)"><em
+                                    class="fas fa-plus"></em>&nbsp;
+                                เพิ่มประเภทสินค้า</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body card-custom-body">
+                    <div class="form-group row _MB0px PD">
+                        <div class="table-responsive bodytable" style="overflow-y:200px; height: 30rem;">
+                            <div class="col-md-12 col-sm-12 col-12 ">
+                                <!--Displaying Table-->
+                                <table id="tb" class="table _MB0px ">
+                                    <thead class="tableColor">
+                                        <tr>
+                                            <th class="text-center align-middle" *ngFor="let _Item of Columns"
+                                                [style.width]="_Item.Width">
+                                                <span [innerHTML]="_Item.ColumnName"></span>&nbsp;
+                                                <em *ngIf="_Item.SortField != ''"></em>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            *ngFor="let type of arrType| slice: (page-1) * pageSize : (page-1) * pageSize + pageSize;index as num">
+                                            <td class="text-center align-middle">
+                                                <label class="col-form-label">{{(num+1)}}</label></td>
+                                            <td class="text-left align-middle"><label
+                                                    class="col-form-label"></label>{{type.title}}</td>
+                                            <td class="text-center align-middle">
+                                                <!--<label class="col-form-label">-->
+                                                <button type="button" class="btn btn-sm btn-warning"
+                                                    (click)="Edit(AddType,type.id)"><em
+                                                        class="fa fa-pencil-alt"></em></button>&nbsp;
+                                                <button type="button" class="btn btn-sm btn-primary"
+                                                    (click)="Delete(type.id)"><em class="fas fa-trash"></em></button>
+                                                <!-- <button *ngIf="isResult == false" type="button" class="btn btn-sm btn-success " (click)="GetPlan(row.MaintenanceYear,row.MaintenanceStatusID)"><em class="far fa-clipboard"></em>&nbsp;Plan</button>&nbsp;
+                      <button *ngIf="isResult == false && row.MaintenanceStatusID == 7" type="button" class="btn btn-sm btn-primary" (click)="GetActual(row.MaintenanceYear)"><em class="fa fa-file-invoice"></em>&nbsp;Actual</button>  -->
+                                                <!--</label>-->
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="float-right">
+                        <ngb-pagination [collectionSize]="arrType.length" [(page)]="page" [maxSize]="5"
+                            [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Insert-->
+    <ng-template #AddType>
+        <div class="modal-header card-header card-custom-modal">
+            <div *ngIf="modeAdd" class="modal-title pull-left"><em
+                    class="fas fa-plus"></em>&nbsp;&nbsp;เพิ่มประเภทสินค้า</div>
+            <div *ngIf="!modeAdd" class="modal-title pull-left"><em
+                    class="fas fa-plus"></em>&nbsp;&nbsp;แก้ไขประเภทสินค้า</div>
+            <button style="color:white" type="button" class="close pull-right" aria-label="Close"
+                (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="row">
+                    <div class="col-lg-12 col-12 col-sm-12 col-md-12">
+                        <div class="input-group">
+                            <div class="col-lg-4 col-12 col-sm-12 col-md-12">
+                                <label for="sNameProduct">ชื่อประเภท : </label></div>
+                            <div class="col-lg-7 col-12 col-sm-12 col-md-12"
+                                [ngClass]="diaplayCss(Type.name,'string',validate.name)">
+                                <input type="text" class="form-control" id="sNameProduct" [(ngModel)]="Type.name"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <div class="text-center">
+                <button *ngIf="modeAdd" type="button" class="btn btn-success _MBLR10px" (click)="Save()"><em
+                        class="fas fa-save"></em>&nbsp;บันทึก</button>&nbsp;
+                <button *ngIf="!modeAdd" type="button" class="btn btn-success _MBLR10px" (click)="SaveEdit()"><em
+                        class="fas fa-save"></em>&nbsp;บันทึก</button>&nbsp;
+                <button type="button" class="btn btn-secondary _MBLR10px" (click)="modalRef.hide()"><em
+                        class="fas fa-undo-alt"></em>&nbsp;ยกเลิก</button>&nbsp;
+
+            </div>
+        </div>
+    </ng-template>
+</div>

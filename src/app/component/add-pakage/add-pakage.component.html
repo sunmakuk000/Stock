@@ -1,0 +1,91 @@
+<div class="row">
+    <div class="col-12">
+        <div class="form-group">
+            <div class="card card-custom">
+                <div class="card-header card-custom-header">
+                    <div class="row" style="padding-right: 15px;">
+                        <div class="col-lg-9 col-md-12 col-sm-12 col-12">
+                            <h2> จัดการชนิดบรรจุภัณฑ์</h2>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-5 col-6">
+                            <button class="btn btn-success" style="float: right;" (click)="addModel(AddPakage)"><em
+                  class="fas fa-plus"></em>&nbsp;
+                เพิ่มชนิดบรรจุภัณฑ์</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body card-custom-body">
+                    <div class="form-group row _MB0px mt-3 PD">
+                        <div class="table-responsive" style="overflow-y:200px; height: 30rem;">
+                            <div class="col-md-12 col-sm-12 col-12 bodytable">
+                                <!--Displaying Table-->
+                                <table id="tb" class="table _MB0px">
+                                    <thead class="tableColor">
+                                        <tr>
+                                            <th class="text-center align-middle" *ngFor="let _Item of Columns" [style.width]="_Item.Width">
+                                                <span [innerHTML]="_Item.ColumnName"></span>&nbsp;
+                                                <em *ngIf="_Item.SortField != ''"></em>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let Pakage of arrPakage | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize;index as num">
+                                            <td class="text-center align-middle"><label class="col-form-label">{{page == 1 ? num+1: num+1 +((page-1)*10)}}</label>
+                                            </td>
+                                            <td class="text-left align-middle"><label class="col-form-label"></label>{{Pakage.title}}</td>
+                                            <td class="text-center align-middle">
+                                                <button type="button" class="btn btn-sm btn-warning" (click)="Edit(AddPakage,Pakage.id)"><em
+                            class="fa fa-pencil-alt"></em></button>&nbsp;
+                                                <button type="button" class="btn btn-sm btn-primary" (click)="Delete(Pakage.id)"><em
+                            class="fas fa-trash"></em></button>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="float-right">
+                        <ngb-pagination [collectionSize]="arrPakage.length" [(page)]="page" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Insert-->
+    <ng-template #AddPakage>
+        <div class="modal-header card-header card-custom-modal">
+            <div *ngIf="modeAdd" class="modal-title pull-left">เพิ่มชนิดบรรจุภัณฑ์</div>
+            <div *ngIf="!modeAdd" class="modal-title pull-left">แก้ไขชนิดบรรจุภัณฑ์</div>
+            <button style="color:white" type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+        </div>
+        <div class="modal-body">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="row">
+                    <div class="col-lg-6 col-12 col-sm-12 col-md-12">
+                        <div class="input-group">
+                            <div class="col-5">
+                                <label for="sNameProduct">ชื่อบรรจุภัณฑ์ : </label></div>
+                            <div class="col-6">
+                                <input type="text" class="form-control" id="sNameProduct" [(ngModel)]="Pakage.name"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <div class="text-center">
+                <button *ngIf="modeAdd" type="button" class="btn btn-success _MBLR10px" (click)="Save()"><em
+            class="fas fa-save"></em>&nbsp;บันทึก</button>&nbsp;
+                <button *ngIf="!modeAdd" type="button" class="btn btn-success _MBLR10px" (click)="SaveEdit()"><em
+            class="fas fa-save"></em>&nbsp;บันทึก</button>&nbsp;
+                <button type="button" class="btn btn-secondary _MBLR10px" (click)="modalRef.hide()"><em
+            class="fas fa-undo-alt"></em>&nbsp;ยกเลิก</button>&nbsp;
+
+            </div>
+        </div>
+    </ng-template>
+</div>

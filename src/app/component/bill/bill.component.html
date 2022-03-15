@@ -1,0 +1,172 @@
+<div class="row">
+    <div class="col-12">
+        <div class="form-group">
+            <div>
+                <div class="card-header bodyBill">
+                    <div class="row" style="padding-right: 15px;">
+                        <div class="col-lg-3 col-12">
+                            <h1> ใบเสร็จรับเงิน</h1>
+                        </div>
+
+                        <div class="col-lg-5 col-12">
+                            <div class="box-search col-12">
+                                <div class="container-search">
+                                    <input type="search" id="search" placeholder="ค้นหาชื่อ"
+                                        [(ngModel)]="search.sSearch" class="form-control" />
+                                    <button class="icon"><i class="fa fa-search" (click)="Search()"></i></button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-body card-custom-body bodyBill">
+                    <div class="form-group row justify-content-end _MB0px PD">
+                        <!-- <div class="col-lg-auto col-12 ">
+                            <div class="box">
+                                <div class="container-1">
+                                    <span class="icon"><em class="fas fa-search"></em></span>
+                                    <input type="search" id="search" placeholder="Name" [(ngModel)]="search.sSearch"
+                                        class="form-control" />
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <div class="col-lg-3 col-12 col-md-3 col-sm-3">
+                            <div class="box">
+                                <div class="container-1">
+                                    <span class="icon"><em class="fas fa-calendar-alt"></em></span>
+                                    <input type="text" id="date" [(ngModel)]="search.sDate"
+                                        #ReqDaterangepicker="bsDaterangepicker" bsDaterangepicker placeholder="Date"
+                                        [bsConfig]="{ rangeInputFormat : 'DD/MM/YYYY', dateInputFormat: 'DD/MM/YYYY', showWeekNumbers: false , containerClass: 'theme-dark-blue' }"
+                                        [ngModelOptions]="{standalone: true}" readonly placement="bottom" />
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-2 col-12 col-md-3 col-sm-3">
+                            <div class="box-2">
+                                <div class="container-2">
+                                    <span class="icon"><em class="fas fa-money-bill"></em></span>
+                                    <select id="select" [(ngModel)]="search.sVatType">
+                                        <option class="lt" [value]="null">ทั้งหมด</option>
+                                        <option class="lt" [value]="1">Vat</option>
+                                        <option class="lt" [value]="2">No Vat</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-12 col-md-3  col-sm-3">
+                            <div class="box-2">
+                                <div class="container-2">
+                                    <span class="icon"><em class="fas fa-file-signature"></em></span>
+                                    <select [(ngModel)]="search.sStatus" class="form-control">
+                                        <option [value]="null">ทั้งหมด</option>
+                                        <option [value]="'อนุมัติ'">อนุมัติ</option>
+                                        <option [value]="'รอการอนุมัติ'">รอการอนุมัติ</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-auto col-12 _PDLR5  col-md-3 col-sm-3">
+                            <div class="box-3">
+                                <div class="container-3">
+                                    <button class="btn btn-primary" (click)="Search()"><em
+                                            class="fas fa-search"></em></button>&nbsp;
+                                    <button class="btn btn-secondary" (click)="ClearSearch()"><em
+                                            class="fas fa-undo"></em></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row _MB0px PD">
+                        <div class="table-responsive bodytable" style="overflow-y:200px; height: 50rem;">
+                            <div class="col-md-12 col-sm-12 col-12 ">
+                                <!--Displaying Table-->
+                                <table id="tb" class="table _MB0px">
+                                    <thead class="tableColor">
+                                        <tr>
+                                            <th class="text-center align-middle" *ngFor="let _Item of Columns"
+                                                [style.width]="_Item.Width">
+                                                <span [innerHTML]="_Item.ColumnName"></span>&nbsp;
+                                                <em *ngIf="_Item.SortField != ''"></em>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            *ngFor="let Bill of arrBill | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize ;index as i">
+                                            <td class="text-center align-middle">
+                                                <label style="text-align:center">{{(Bill.bill_number)}}</label></td>
+                                            <td class="text-center align-middle">
+                                                <label class="fmemail"> {{Bill.company_name}} </label>
+                                            </td>
+                                            <td class="text-center align-middle">
+                                                <label class="col-form-label"> {{Bill.Update_bill_date}}</label>
+                                            </td>
+
+                                            
+                                            <td class="text-center align-middle">
+                                                <label *ngIf="Bill.vat_type == '2'" class="col-form-label"> <span><em
+                                                            class="far fa-times-circle"
+                                                            style="color: rgb(253, 66, 84); font-size: 21px;"></em>
+                                                    </span></label>
+                                                <label *ngIf="Bill.vat_type == '1'" class="col-form-label"> <span><em
+                                                            class="far fa-check-circle"
+                                                            style="color: rgb(0, 186, 103); font-size: 21px;"></em>
+                                                    </span></label>
+                                            </td>
+
+                                            <td class="text-center align-middle">
+                                                <div *ngIf="Bill.approve_status == 'อนุมัติ'" class="statusApprove">
+                                                    <strong class="col-form-label"
+                                                        style="color: #00BA67; font-size: 15px;">
+                                                        {{Bill.approve_status}} </strong>
+                                                </div>
+
+                                                <div *ngIf="Bill.approve_status == 'รอการอนุมัติ'" class="statusPeding">
+                                                    <strong class="col-form-label"
+                                                        style="color:  rgb(245, 166, 35); font-size: 15px;">
+                                                        {{Bill.approve_status}} </strong>
+                                                </div>
+
+                                                <div *ngIf="Bill.approve_status == 'ไม่อนุมัติ'" class="statusReject">
+
+                                                    <strong class="col-form-label"
+                                                        style="color:  rgb(253, 66, 84); font-size: 15px;">
+                                                        {{Bill.approve_status}} </strong>
+                                                </div>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <label class="col-form-label"> {{Bill.net_paid | number : '1.2-2'}}
+                                                </label>
+                                            </td>
+                                            <td class="text-center align-middle">
+                                                <button type="button" class="btn btn-sm btn-warning"
+                                                    (click)="Edit(Bill.id)"> <em class="fa fa-pen"></em></button>
+                                                &nbsp; <button [disabled]="Bill.bill_status != '1'" type="button"
+                                                    class="btn btn-sm btn-danger" (click)="PDF(Bill.id)"> <em
+                                                        class="fas fa-file-pdf"></em></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="float-right">
+                        <ngb-pagination [collectionSize]="arrBill.length" [(page)]="page" [maxSize]="5" [rotate]="true"
+                            [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

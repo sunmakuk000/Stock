@@ -1,0 +1,22 @@
+.card-main{
+    margin-top: 2rem;
+    height: 100%;
+    min-height: 30rem;
+}
+.card-custom {
+    border-radius: 15px;
+    /* opacity: 0.7; */
+}
+
+.chart{
+    height: 40%;
+}
+
+.option-card{
+    height: 100%;
+    min-height: 6rem;
+    max-height: 6rem;
+    border-radius: 15px;
+    height: 6rem;
+    background-color: rgb(255, 255, 255);
+}

@@ -1,0 +1,77 @@
+<body id="mainBody">
+  <div id="SITE_CONTENT">
+    <div class="content-body">
+      <div class="body-side" id="divMenuLeft">
+        <div class="btnhidemenu">
+          <button class="btn btn-default" title="hide menu" (click)="SlideMenu()"><em class="fas fa-bars"
+              style="font-size: 25px;color:#007bff;"></em></button>
+        </div>
+        <div class="main-title">
+          <div class="title-label label-1">
+            ร้านเบญจมาศ
+          </div>
+        </div>
+        <div class="main-nav">
+          <ul id="menuMain" class="menu" *ngIf="arrMenu.status == 200">
+            <ng-container *ngFor="let menu of arrMenu.data, index as row">
+              <li *ngIf="menu.id != 8" [hidden]="role == 2 ? menu.id == 4 : null">
+                <a routerLinkActive="active"
+                  class="set" id="Menu_{{row}}" [routerLink]="[menu.url]">
+                  <div class="menu-icon"><i [ngClass]="menu.icon"></i></div>
+                  <div class="menu-label">{{menu.title}}</div>
+                </a></li>
+            </ng-container>
+            <li><a style="cursor: pointer;"  routerLinkActive="active" id="Menu_10" (click)="logout()" class="set">
+                <div class="menu-icon"><i class="fas fa-sign-out-alt"></i></div>
+                <div class="menu-label">ออกจากระบบ</div>
+            </a></li>
+            <!-- <div class="float-right" (click)="logout()"> <button class="btn btn-danger">Logout</button></div> -->
+          </ul>
+        </div>
+      </div>
+      <div class="body-main">
+        <div class="main-head">
+          <div class="head-flag">
+            <div class="input-group">
+              <button id="divBTNSlide" class="btn btn-default btnshowmenu" style="display: none;color:#007bff;"
+                title="show menu" (click)="SlideMenu()">
+                <em class="fas fa-times" style="font-size: 25px"></em>
+              </button>
+            </div>
+          </div>
+
+        </div>
+        <div class="main-menu-res">
+          <header class="header">
+            <input class="menu-btn" type="checkbox" id="menu-btn" />
+            <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+            <ul class="menu">
+              <li *ngFor="let menu of arrMenu.data">
+                <a *ngIf="menu.id != 8" [hidden]="role == 2 ? menu.id == 4 : null" routerLinkActive="active"
+                  [routerLink]="[menu.url]">
+                  <div style="padding-top:5px" [ngClass]="menu.icon"></div>
+                  <!--style="[result.sStyle]"-->
+                  <div class="menu-label">{{menu.title}}</div>
+                </a>
+              </li>
+              <li><a routerLinkActive="active" (click)="logout()">
+                  <div style="padding-top:5px" class="fas fa-sign-out-alt"></div>
+                  <div class="menu-label">ออกจากระบบ</div>
+                </a></li>
+            </ul>
+          </header>
+        </div>
+        <div class="main-body">
+          <div class="_MBLR15px">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="SITE_NAVLIST">
+    <div class="container"></div>
+  </div>
+</body>
+
+

@@ -1,0 +1,22 @@
+
+<div class="row top-space left-space form-inline">
+  <div class="col-3">
+    <select class="form-control" [(ngModel)]="chartdata.chart_show" (change)="chartdata.summarys()">
+      <option value="sell">ยอดขาย</option>
+      <option value="bestsell/product">10 อันดับสินค้าขายดี</option>
+      <option value="bestsell/type">10 อันดับประเภทสินค้าขายดี</option>
+      <option value="bestbuy">10 อันดับลูกค้าทำยอดซื้อสูงสุด</option>
+      <!-- <option value="compare/sell">เปรียบเทียบยอดขาย</option> -->
+    </select>
+</div>
+  <div class="col-2">
+      <select class="form-control" [(ngModel)]="chartdata.time_type" (change)="chartdata.summarys()">
+        <option value="7">ย้อนหลัง 7 วัน</option>
+        <option value="30">ย้อนหลัง 30 วัน</option>
+        <option value="6">ย้อนหลัง 6 เดือน</option>
+        <option value="12">ย้อนหลัง 12 เดือน</option>
+        <option value="all">ย้อนหลังทั้งหมด</option>
+        <!-- <option value="manual">กำหนดเอง</option> -->
+      </select>
+  </div>
+</div>

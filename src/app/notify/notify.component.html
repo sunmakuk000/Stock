@@ -1,0 +1,34 @@
+<div class="modal-header card-header card-custom-modal">
+    <div class="modal-title pull-left">สินค้าใกล้หมด</div>
+    <!-- <button style="color:white" type="button" class="close pull-right" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button> -->
+</div>
+<div class="modal-body">
+    <div class="form-group row _MB0px PD">
+        <div class="table-responsive bodytable" style="overflow-y:200px; height: 25rem;">
+            <div class="col-md-12 col-sm-12 col-12 ">
+                <table id="tb" class="table _MB0px">
+                    <thead class="tableColor">
+                        <tr>
+                            <th class="text-center align-middle" *ngFor="let _Item of Columns"
+                                [style.width]="_Item.Width">
+                                <span [innerHTML]="_Item.ColumnName"></span>&nbsp;
+                                <em *ngIf="_Item.SortField != ''"></em>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let lowStock of ArrLowStock;index as i">
+                            <td class="text-center align-middle"><label class="col-form-label">{{i+1}}</label>
+                            </td>
+                            <td class="text-left align-middle"><label class="col-form-label"></label>{{lowStock.name}}&nbsp;({{lowStock.group_title}}&nbsp;{{lowStock.multiple}})
+                            </td>
+                            <td class="text-center align-middle">{{lowStock.instock_now}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
